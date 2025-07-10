@@ -8,7 +8,7 @@ from PIL import Image
 
 # Model download link (Google Drive)
 # MODEL_URL = "https://drive.google.com/uc?export=download&id=1p9pqC-Ba4aKdNcQploHjnaCVip5J07qe"
-MODEL_URL = "https://drive.google.com/file/d/1kTiKgiZlxYsmbecI_AmCrMxSJVUNkiJ1/view?usp=sharing"
+MODEL_URL = "https://colab.research.google.com/drive/1099B9vb5lIK2IrYK3m46zJl0fAJV3KC0?usp=sharing"
 MODEL_PATH = "Modelenv.v1.h5"
 
 # Download model if not present
