@@ -14,25 +14,6 @@ import os
 
 import gdown  # Make sure this is at the top of your file
 
-@st.cache_resource
-def load_trained_model():
-    """Download model from Google Drive and load it"""
-    file_id = "10fj2KgjXvvJbnh15rINSy3N4kPprlLIy"  # ⬅️ REPLACE with your real file ID
-    url = f"https://drive.google.com/uc?id={file_id}"
-    output = "Modelenv.v1.h5"
-    
-    if not os.path.exists(output):
-        st.info("Downloading model from Google Drive...")
-        gdown.download(url, output, quiet=False)
-    
-    try:
-        model = load_model(output)
-        return model
-    except Exception as e:
-        st.error(f"Error loading model: {e}")
-        return None
-
-
 # Set page configuration
 st.set_page_config(
     page_title="Satellite Image Classifier",
@@ -73,13 +54,20 @@ st.markdown("""
 # Cache the model loading to improve performance
 @st.cache_resource
 def load_trained_model():
-    """Load the pre-trained model"""
+    """Download model from Google Drive and load it"""
+    file_id = "10fj2KgjXvvJbnh15rINSy3N4kPprlLIy"  # ⬅️ REPLACE with your real file ID
+    url = f"https://drive.google.com/uc?id={file_id}"
+    output = "Modelenv.v1.h5"
+    
+    if not os.path.exists(output):
+        st.info("Downloading model from Google Drive...")
+        gdown.download(url, output, quiet=False)
+    
     try:
-        model = load_model('Modelenv.v1.h5')
+        model = load_model(output)
         return model
     except Exception as e:
         st.error(f"Error loading model: {e}")
-        st.error("Please make sure 'Modelenv.v1.h5' is in the same directory as this script.")
         return None
 
 def preprocess_image(uploaded_image):
